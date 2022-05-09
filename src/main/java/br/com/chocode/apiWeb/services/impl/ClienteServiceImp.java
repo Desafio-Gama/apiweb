@@ -30,7 +30,8 @@ public class ClienteServiceImp implements LojaChocodeService<Cliente> {
 
     @Override
     public List<Cliente> findAll() {
-        return null;
+        List<Cliente> listClientes = clienteDAO.findAll();
+        return listClientes;
     }
 
     @Override

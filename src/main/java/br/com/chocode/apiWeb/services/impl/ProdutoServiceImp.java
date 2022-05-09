@@ -27,7 +27,7 @@ public class ProdutoServiceImp implements LojaChocodeService<Produto> {
         return null;
     }
 
-    public List<Produto> findAll(){
+    public List<Produto> findAll() {
         List<Produto> listProdutos = produtoDAO.findAll();
         return listProdutos;
     }
