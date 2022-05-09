@@ -19,12 +19,12 @@ public class ProdutoServiceImp implements LojaChocodeService<Produto> {
 
     @Override
     public Produto save(Produto produto) {
-        return null;
+         return produtoDAO.saveAndFlush(produto);
     }
 
     @Override
     public Produto findById(Long id) {
-        return null;
+        return produtoDAO.findById(id).get();
     }
 
     public List<Produto> findAll(){
@@ -34,11 +34,28 @@ public class ProdutoServiceImp implements LojaChocodeService<Produto> {
 
     @Override
     public void deleter(Long id) {
+        produtoDAO.deleteById(id);
 
     }
 
     @Override
     public Produto update(Produto produto) {
-        return null;
+        Produto produtoBanco = findById(produto.getId());
+        if (produto.getNome() != null){
+            produtoBanco.setNome(produto.getNome());
+        }
+        if (produto.getDescricao() != null){
+            produtoBanco.setDescricao(produto.getDescricao());
+        }
+        if (produto.getQuantidade() != null){
+            produtoBanco.setQuantidade(produto.getQuantidade());
+        }
+        if (produto.getDataCadastro() != null){
+            produtoBanco.setDataCadastro(produto.getDataCadastro());
+        }
+        if (produto.getPreco() != null){
+            produtoBanco.setPreco(produto.getPreco());
+        }
+        return save(produtoBanco);
     }
 }
