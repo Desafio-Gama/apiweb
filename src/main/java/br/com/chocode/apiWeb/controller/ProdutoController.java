@@ -1,7 +1,7 @@
 package br.com.chocode.apiWeb.controller;
 
 import br.com.chocode.apiWeb.model.Produto;
-import br.com.chocode.apiWeb.services.ProdutoServiceImp;
+import br.com.chocode.apiWeb.services.impl.ProdutoServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -14,7 +14,7 @@ public class UploadController {
 
     @GetMapping("/home")
     public String home(){
-        return "/home/index";
+        return "home/index";
     }
 
     @PostMapping("/upload")
