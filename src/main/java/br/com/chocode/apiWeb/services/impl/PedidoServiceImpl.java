@@ -18,12 +18,12 @@ public class PedidoServiceImpl implements LojaChocodeService<Pedido>{
 
     @Override
     public Pedido save(Pedido pedido){
-        return null;
+        return pedidoDAO.saveAndFlush(pedido);
     }
 
     @Override
     public Pedido findById(Long id){
-        return null;
+        return pedidoDAO.findById(id).get();
     }
 
     @Override
@@ -34,12 +34,20 @@ public class PedidoServiceImpl implements LojaChocodeService<Pedido>{
 
     @Override
     public void deleter(Long id){
-
+        pedidoDAO.findById(id).get();
     }
 
     @Override
     public Pedido update(Pedido pedido){
-        return null;
+        Pedido pedidoBanco = findById(pedido.getId());
+        if (pedido.getData() != null){
+            pedidoBanco.setData(pedido.getData());
+        }
+        if (pedido.getCliente() != null){
+            pedidoBanco.setCliente(pedido.getCliente());
+        }
+        
+        return save(pedidoBanco);
     }
     
 }
