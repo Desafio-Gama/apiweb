@@ -1,4 +1,4 @@
-package br.com.chocode.apiWeb.services.impl;
+package br.com.chocode.apiWeb.services.imp;
 
 import java.util.List;
 
@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import br.com.chocode.apiWeb.dao.PedidoDAO;
 import br.com.chocode.apiWeb.model.Pedido;
 import br.com.chocode.apiWeb.services.LojaChocodeService;
+import org.springframework.stereotype.Service;
 
-public class PedidoServiceImpl implements LojaChocodeService<Pedido>{
+@Service
+public class PedidoServiceImp implements LojaChocodeService<Pedido>{
     private PedidoDAO pedidoDAO;
 
     @Autowired
-    public PedidoServiceImpl(PedidoDAO pedidoDAO){
+    public PedidoServiceImp(PedidoDAO pedidoDAO){
         this.pedidoDAO = pedidoDAO;
     }
 

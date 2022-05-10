@@ -1,14 +1,14 @@
-package br.com.chocode.apiWeb.services.impl;
+package br.com.chocode.apiWeb.services.imp;
 
 import br.com.chocode.apiWeb.dao.ProdutoDAO;
 import br.com.chocode.apiWeb.model.Produto;
 import br.com.chocode.apiWeb.services.LojaChocodeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 public class ProdutoServiceImp implements LojaChocodeService<Produto> {
     private ProdutoDAO produtoDAO;
 

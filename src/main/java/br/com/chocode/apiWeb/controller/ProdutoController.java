@@ -11,17 +11,20 @@ import java.util.List;
 @RestController
 @RequestMapping("/produtos")
 public class ProdutoController {
-    @Autowired
     private LojaChocodeService<Produto> produtoServiceImp;
 
+    @Autowired
+    public ProdutoController(LojaChocodeService<Produto> produtoServiceImp) {
+        this.produtoServiceImp = produtoServiceImp;
+    }
+
     @PostMapping
-    public ResponseEntity<Produto> save(Produto produto) {
+    public ResponseEntity<Produto> save(@RequestBody Produto produto) {
         return ResponseEntity.status(201).body(produtoServiceImp.save(produto));
     }
 
-    @GetMapping
-    @RequestMapping("/{id}")
-    public ResponseEntity<Produto> findById(Long id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Produto> findById(@PathVariable Long id) {
         return ResponseEntity.status(200).body(produtoServiceImp.findById(id));
     }
 
@@ -30,8 +33,8 @@ public class ProdutoController {
         return ResponseEntity.status(200).body(produtoServiceImp.findAll());
     }
 
-    @DeleteMapping
-    public ResponseEntity<String> delete(Long id) {
-        return ResponseEntity.status(200).body("Produto Deletado");
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        produtoServiceImp.deleter(id);
     }
 }

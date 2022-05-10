@@ -2,15 +2,10 @@ package br.com.chocode.apiWeb.model;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "pedido")
 public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +19,12 @@ public class Pedido {
     private Cliente cliente;
 
     public Pedido() {}
+
+    public Pedido(Long id, LocalDate data, Cliente cliente) {
+        this.id = id;
+        this.data = data;
+        this.cliente = cliente;
+    }
 
     public void setId(Long id) {
         this.id = id;

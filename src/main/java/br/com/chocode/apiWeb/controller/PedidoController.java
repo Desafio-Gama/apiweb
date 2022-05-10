@@ -4,29 +4,28 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import br.com.chocode.apiWeb.model.Pedido;
-import br.com.chocode.apiWeb.services.impl.PedidoServiceImpl;
+import br.com.chocode.apiWeb.services.imp.PedidoServiceImp;
 
 @RestController
-@RequestMapping("/pedido")
+@RequestMapping("/pedidos")
 public class PedidoController {
+    private PedidoServiceImp pedidoService;
+
     @Autowired
-    private PedidoServiceImpl pedidoService;
+    public PedidoController(PedidoServiceImp pedidoService) {
+        this.pedidoService = pedidoService;
+    }
 
     @PostMapping
-    public ResponseEntity<Pedido> save(Pedido pedido) {
+    public ResponseEntity<Pedido> save(@RequestBody Pedido pedido) {
         return ResponseEntity.status(201).body(pedidoService.save(pedido));
     }
 
-    @GetMapping
-    @RequestMapping("/{id}")
-    public ResponseEntity<Pedido> findById(Long id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Pedido> findById(@PathVariable Long id) {
         return ResponseEntity.status(200).body(pedidoService.findById(id));
     }
 
@@ -35,8 +34,8 @@ public class PedidoController {
         return ResponseEntity.status(200).body(pedidoService.findAll());
     }
 
-    @DeleteMapping
-    public ResponseEntity<String> delete(Long id) {
-        return ResponseEntity.status(200).body("Pedido Deletado");
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
+        pedidoService.deleter(id);
     }
 }
