@@ -2,7 +2,6 @@ package br.com.chocode.apiWeb.controller;
 
 import java.util.List;
 
-import br.com.chocode.apiWeb.model.Produto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +25,11 @@ public class ClienteController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Cliente> findById(@PathVariable Long id) {
-        return ResponseEntity.status(200).body(clienteServiceImp.findById(id));
+        Cliente cliente = clienteServiceImp.findById(id);
+        if (cliente == null) {
+            return ResponseEntity.status(404).body(null);
+        }
+        return ResponseEntity.status(200).body(cliente);
     }
 
     @GetMapping
