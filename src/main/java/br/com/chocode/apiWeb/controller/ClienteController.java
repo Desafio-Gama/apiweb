@@ -23,7 +23,7 @@ public class ClienteController {
         return ResponseEntity.status(201).body(clienteServiceImp.save(cliente));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/id")
     public ResponseEntity<Cliente> findById(@PathVariable Long id) {
         Cliente cliente = clienteServiceImp.findById(id);
         if (cliente == null) {

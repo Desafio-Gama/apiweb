@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Buscar cliente</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
@@ -14,10 +14,10 @@
                 <br>
                 <h4>Busca por cliente</h4>
                 <br>
-                <form action="/clientes" method="get" enctype="multipart/form-data">
+                <form action="/resultado" method="get" enctype="multipart/form-data">
                     <p>
-                    <h6>Qual o email do cliete:</h6>
-                    <input type="text" class="form-control-text" id="description" name="description" required>
+                    <h6>Qual o id do cliete:</h6>
+                    <input type="text" class="form-control-text" id="description" name="id" required>
                     </p>
                     <button type="submit" class="btn btn-primary">Enviar</button>
                 </form>
