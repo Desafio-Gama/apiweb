@@ -23,9 +23,9 @@ public class ClienteController {
         return ResponseEntity.status(201).body(clienteServiceImp.save(cliente));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Cliente> findById(@PathVariable Long id) {
-        Cliente cliente = clienteServiceImp.findById(id);
+    @GetMapping("/busca")
+    public ResponseEntity<Cliente> findById(@RequestParam String email) {
+        Cliente cliente = clienteServiceImp.findByEmail(email);
         if (cliente == null) {
             return ResponseEntity.status(404).body(null);
         }

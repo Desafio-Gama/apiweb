@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import br.com.chocode.apiWeb.dao.ClienteDAO;
 import br.com.chocode.apiWeb.model.Cliente;
 import br.com.chocode.apiWeb.services.LojaChocodeService;
-import br.com.chocode.apiWeb.services.RedisService;
+import br.com.chocode.apiWeb.serv 
 
 import org.springframework.stereotype.Service;
 
@@ -82,4 +82,33 @@ public class ClienteServiceImp implements LojaChocodeService<Cliente> {
         return save(clienteBase);
     }
 
+    public Cliente findByEmail(String email) {
+        Cliente cliente;
+        String key = "cliente" + email;
+        String keyNome = "clienteNome" + email;
+        String keyEmail = "clienteEmail" + email;
+
+        try {
+            if (redis.read(keyEmail) != null) {
+                cliente = new Cliente();
+
+                cliente.setId(Long.parseLong(redis.read(key)));
+                cliente.setNome(redis.read(keyNome) + " DB");
+                cliente.setEmail(email);
+
+                return cliente;
+
+            } else {
+                cliente = clienteDAO.findByEmail(email);
+
+                redis.write(key, cliente.getId().toString(), 60);
+                redis.write(keyNome, cliente.getNome(), 60);
+                redis.write(keyEmail, cliente.getEmail(), 60);
+
+                return cliente;
+            }
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }
