@@ -1,20 +1,19 @@
 package br.com.chocode.apiWeb.controller;
 
 import java.util.List;
-
+import br.com.chocode.apiWeb.services.LojaChocodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import br.com.chocode.apiWeb.model.Cliente;
-import br.com.chocode.apiWeb.services.imp.ClienteServiceImp;
 
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
-    private ClienteServiceImp clienteServiceImp;
+    private LojaChocodeService<Cliente> clienteServiceImp;
 
     @Autowired
-    public ClienteController(ClienteServiceImp clienteServiceImp) {
+    public ClienteController(LojaChocodeService<Cliente> clienteServiceImp) {
         this.clienteServiceImp = clienteServiceImp;
     }
 

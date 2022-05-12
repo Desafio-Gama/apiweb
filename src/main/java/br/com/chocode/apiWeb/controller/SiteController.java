@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -34,7 +33,7 @@ public class SiteController {
     }
 
     @GetMapping("/resultado")
-    public String resultado( Model model) {
+    public String resultado(Model model) {
 
         List<Cliente> cli= clienteService.findAll();
 

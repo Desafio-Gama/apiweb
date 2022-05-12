@@ -25,7 +25,6 @@ CREATE TABLE pedido (
 	FOREIGN KEY(id_cliente) REFERENCES cliente(id)
 );
 
-
 CREATE TABLE pedido_produto (
 	id serial PRIMARY KEY,
 	id_pedido INTEGER,

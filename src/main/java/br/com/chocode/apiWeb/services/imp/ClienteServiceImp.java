@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClienteServiceImp implements LojaChocodeService<Cliente> {
     private ClienteDAO clienteDAO;
-
     private RedisService redis;
 
     @Autowired
