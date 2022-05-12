@@ -6,6 +6,5 @@ import br.com.chocode.apiWeb.model.Cliente;
 
 @Repository
 public interface ClienteDAO extends JpaRepository<Cliente, Long> {
-
-
+    Cliente findByEmail(String email);
 }
