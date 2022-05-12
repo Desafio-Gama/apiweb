@@ -2,44 +2,41 @@ package br.com.chocode.apiWeb.services.imp;
 
 import java.util.List;
 
+import br.com.chocode.apiWeb.services.ClienteChocodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import br.com.chocode.apiWeb.dao.ClienteDAO;
 import br.com.chocode.apiWeb.model.Cliente;
-import br.com.chocode.apiWeb.services.LojaChocodeService;
-import br.com.chocode.apiWeb.serv 
-
 import org.springframework.stereotype.Service;
 
 @Service
-public class ClienteServiceImp implements LojaChocodeService<Cliente> {
+public class ClienteServiceImp implements ClienteChocodeService<Cliente> {
     private ClienteDAO clienteDAO;
-    private RedisService redis;
+    private RedisServiceImp redis;
 
     @Autowired
-    public ClienteServiceImp(ClienteDAO clienteDAO, RedisService redis) {
+    public ClienteServiceImp(ClienteDAO clienteDAO, RedisServiceImp redis) {
         this.clienteDAO = clienteDAO;
         this.redis = redis;
     }
 
     @Override
     public Cliente save(Cliente cliente) {
-
         return clienteDAO.saveAndFlush(cliente);
     }
 
     @Override
     public Cliente findById(Long id) {
         Cliente cliente;
-        String key = "cliente" + id;
-        String keyNome = "clienteNome" + id;
-        String keyEmail = "clienteEmail" + id;
+        String key = "idCliente" + id;
+        String keyNome = "nomeCliente" + id;
+        String keyEmail = "emailCliente" + id;
 
         try {
             if (redis.read(key) != null) {
                 cliente = new Cliente();
 
                 cliente.setId(id);
-                cliente.setNome(redis.read(keyNome) + " DB");
+                cliente.setNome(redis.read(keyNome) + " Redis");
                 cliente.setEmail(redis.read(keyEmail));
 
                 return cliente;

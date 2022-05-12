@@ -1,4 +1,4 @@
-package br.com.chocode.apiWeb.services;
+package br.com.chocode.apiWeb.services.imp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,11 +8,11 @@ import redis.clients.jedis.JedisPubSub;
 import redis.clients.jedis.params.SetParams;
 
 @Service
-public class RedisService {
+public class RedisServiceImp {
     private Jedis jedis;
 
     @Autowired
-    public RedisService() {
+    public RedisServiceImp() {
         this.jedis = new Jedis("http://localhost:6379");
     }
 

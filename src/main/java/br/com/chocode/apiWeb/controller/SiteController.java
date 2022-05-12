@@ -2,22 +2,22 @@ package br.com.chocode.apiWeb.controller;
 
 import br.com.chocode.apiWeb.model.Cliente;
 import br.com.chocode.apiWeb.model.Produto;
+import br.com.chocode.apiWeb.services.ClienteChocodeService;
 import br.com.chocode.apiWeb.services.LojaChocodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
 @Controller
 public class SiteController {
-    private LojaChocodeService<Cliente> clienteService;
+    private ClienteChocodeService<Cliente> clienteService;
     private LojaChocodeService<Produto> produtoService;
 
     @Autowired
-    public SiteController(LojaChocodeService<Cliente> clienteService, LojaChocodeService<Produto> produtoService) {
+    public SiteController(ClienteChocodeService<Cliente> clienteService, LojaChocodeService<Produto> produtoService) {
         this.clienteService = clienteService;
         this.produtoService = produtoService;
     }
