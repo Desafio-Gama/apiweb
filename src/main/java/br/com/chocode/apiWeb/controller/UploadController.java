@@ -12,9 +12,9 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 public class UploadController {
 
-    @GetMapping("/home")
+    @GetMapping("/update")
     public String home(){
-        return "/home/index";
+        return "home/index";
     }
 
     @PostMapping("/upload")
